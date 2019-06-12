@@ -1,7 +1,6 @@
 package patientsupport.patientsupport.models;
 
 import java.util.Collection;
-import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

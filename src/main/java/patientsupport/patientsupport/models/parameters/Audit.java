@@ -7,7 +7,6 @@ import java.util.Date;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
