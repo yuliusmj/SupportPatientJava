@@ -1,0 +1,24 @@
+.sidebar[data-active-color="info"] .nav li.active>a,
+.sidebar[data-active-color="info"] .nav li.active>a i {
+    background-color: #51bcda;
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(156,39,176,.4);
+    color: #ffffff;
+}
+
+/* .sidebar .nav li>a,
+.off-canvas-sidebar .nav li>a {
+    margin: 0;
+} */
+
+.sidebar .sidebar-wrapper>.nav [data-toggle=collapse]~div>ul>li>a .sidebar-mini-icon {
+    width: 34px;
+    margin-right: 10px;
+    margin-left: 0;
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    float: left;
+    z-index: 1;
+    display: inherit;
+    color: hsla(0, 0%, 100%, .5);
+}
