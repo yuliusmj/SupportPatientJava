@@ -2,9 +2,7 @@ package patientsupport.patientsupport.models.accounts;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-
 import org.hibernate.validator.constraints.Length;
-
 import patientsupport.patientsupport.models.parameters.Audit;
 
 @Entity
