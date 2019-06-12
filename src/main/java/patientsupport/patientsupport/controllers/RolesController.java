@@ -13,13 +13,15 @@ public class RolesController {
     @Autowired
     RoleRepository roleRepository;
 
+    private String pathView = "admin/roles";
+
     //Index
     @RequestMapping(value = "/roles",method = RequestMethod.GET)
     public ModelAndView list(){
 
         ModelAndView view = new ModelAndView();
         view.addObject("Roles",roleRepository.findAll());
-        view.setViewName("roles/index");
+        view.setViewName(pathView + "/index");
 
         return view;
         

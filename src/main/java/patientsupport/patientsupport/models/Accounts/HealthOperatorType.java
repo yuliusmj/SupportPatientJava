@@ -1,14 +1,16 @@
-package patientsupport.patientsupport.models.Accounts;
+package patientsupport.patientsupport.models.accounts;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
+
+import patientsupport.patientsupport.models.parameters.Audit;
 
 import java.util.Set;
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "HealthOperatorsTypes")
-public class HealthOperatorType {
+public class HealthOperatorType extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,19 +22,21 @@ public class HealthOperatorType {
 
     private boolean active;
 
-    @OneToMany(mappedBy = "HealthOperatorsTypes",cascade = CascadeType.ALL)
-    private Set<HealthOperatorAccount>HealthOperatorAccounts;
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "HealthOperatorTypeId")
+    private Set<HealthOperatorAccount> healthOperatorAccounts;
 
-    public  HealthOperatorType(int Id, String Description,boolean Active){
-
-        this.id = Id;
-        this.description = Description;
-        this.active = Active;
-    }
-
-    //#region Getters and Setters
+    // #region Getters and Setters
     public int getId() {
         return id;
+    }
+
+    public Set<HealthOperatorAccount> getHealthOperatorAccounts() {
+        return healthOperatorAccounts;
+    }
+
+    public void setHealthOperatorAccounts(Set<HealthOperatorAccount> healthOperatorAccounts) {
+        this.healthOperatorAccounts = healthOperatorAccounts;
     }
 
     public boolean isActive() {

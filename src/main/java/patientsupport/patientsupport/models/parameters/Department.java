@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "Departments")
-public class Department {
+public class Department extends Audit<String> {
 
     //Attributes
     @Id
@@ -19,11 +19,20 @@ public class Department {
     @Length(max = 100)
     private String description;
 
-    @OneToMany(mappedBy = "City", cascade = CascadeType.ALL)
-    private Set<City> Cities;
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "DepartmentId")
+    private Set<City> cities;
 
     public String getDescription() {
         return description;
+    }
+
+    public Set<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
     }
 
     public int getId() {

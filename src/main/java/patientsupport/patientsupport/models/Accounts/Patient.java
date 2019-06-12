@@ -1,6 +1,8 @@
-package patientsupport.patientsupport.models.Accounts;
+package patientsupport.patientsupport.models.accounts;
 
-public class Patient {
+import patientsupport.patientsupport.models.parameters.Audit;
+
+public class Patient extends Audit<String> {
 
     
 }

@@ -1,4 +1,4 @@
-package patientsupport.patientsupport.models.Events;
+package patientsupport.patientsupport.models.events;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -8,9 +8,11 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import patientsupport.patientsupport.models.parameters.Audit;
+
 @Entity
 @Table(name = "Events")
-public class Event {
+public class Event extends Audit<String> {
 
     @Id
     @GeneratedValue
@@ -37,11 +39,6 @@ public class Event {
 
     @Length(max = 255)
     private String observations;
-
-    @ManyToOne
-    @JoinColumn
-    private EventType eventtype;
-
 
     public int getId() {
         return id;

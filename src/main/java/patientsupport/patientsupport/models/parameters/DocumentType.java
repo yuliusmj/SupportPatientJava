@@ -3,11 +3,11 @@ package patientsupport.patientsupport.models.parameters;
 import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.validator.constraints.Length;
-import patientsupport.patientsupport.models.Accounts.Patient;
+import patientsupport.patientsupport.models.accounts.Patient;
 
 @Entity
 @Table(name = "DocumentTypes")
-public class DocumentType {
+public class DocumentType extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,13 +19,21 @@ public class DocumentType {
     @Length(max = 20)
     private String alias;
 
-    @OneToMany(mappedBy = "Patient", cascade = CascadeType.ALL)
-    private Set<Patient> Patients;
-
+    // @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    // @JoinColumn(name = "PatientId")
+    // private Set<Patient> patients;
 
     public int getId() {
         return id;
     }
+
+    // public Set<Patient> getPatients() {
+    //     return patients;
+    // }
+
+    // public void setPatients(Set<Patient> patients) {
+    //     this.patients = patients;
+    // }
 
     public String getAlias() {
         return alias;

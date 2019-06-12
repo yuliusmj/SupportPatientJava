@@ -1,13 +1,15 @@
-package patientsupport.patientsupport.models.Events;
+package patientsupport.patientsupport.models.events;
 
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
+import patientsupport.patientsupport.models.parameters.Audit;
+
 @Entity
 @Table(name = "EventTypes")
-public class EventType {
+public class EventType extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +21,20 @@ public class EventType {
     
     private boolean active;
 
-    @OneToMany(mappedBy = "EventTypes", cascade = CascadeType.ALL)
-    private Set<Event> Events;
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "EventTypeId")
+    private Set<Event> events;
 
     public boolean isActive() {
         return active;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 
     public int getId() {

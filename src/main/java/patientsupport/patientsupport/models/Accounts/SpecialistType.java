@@ -1,4 +1,4 @@
-package patientsupport.patientsupport.models.Accounts;
+package patientsupport.patientsupport.models.accounts;
 
 import java.util.Set;
 
@@ -6,11 +6,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
-
+import patientsupport.patientsupport.models.parameters.Audit;
 
 @Entity
 @Table(name = "SpecialistTypes")
-public class SpecialistType {
+public class SpecialistType extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,22 +18,30 @@ public class SpecialistType {
 
     @NotEmpty(message = "This field is required")
     @Length(max = 50)
-    private String Description;
+    private String description;
 
-
-    @OneToMany(mappedBy = "SpecialistType",cascade = CascadeType.ALL)
-    private Set<Physician> Physicians; 
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "SpecialistTypeId")
+    private Set<Physician> physicians;
 
     public int getId() {
         return id;
     }
 
+    public Set<Physician> getPhysicians() {
+        return physicians;
+    }
+
+    public void setPhysicians(Set<Physician> physicians) {
+        this.physicians = physicians;
+    }
+
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        this.Description = description;
+        this.description = description;
     }
 
     public void setId(int id) {

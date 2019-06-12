@@ -1,15 +1,16 @@
-package patientsupport.patientsupport.models.Accounts;
-
+package patientsupport.patientsupport.models.accounts;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import patientsupport.patientsupport.models.parameters.Audit;
+
 
 @Entity
 @Table(name = "Physicians")
-public class Physician {
+public class Physician extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +28,10 @@ public class Physician {
     @Length(max = 50)
     private String phone;
 
-    
     @Length(max = 100)
     private String accountName;
 
     private boolean active;
-
-
-    @ManyToOne
-    @JoinColumn
-    public SpecialistType specialistType;
 
     public Physician (int id){
         this.id = id;

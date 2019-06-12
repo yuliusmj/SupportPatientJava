@@ -9,8 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-@Table(name = "zones")
-public class Zone {
+@Table(name = "Zones")
+public class Zone extends Audit<String> {
 
     //Attributes
     @Id
@@ -22,13 +22,22 @@ public class Zone {
     private String description;
 
     private boolean active;
-    
-    @OneToMany(mappedBy = "zone", cascade = CascadeType.ALL)
-    private Set<Country> countries;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "ZoneId")
+    private Set<Department> departments;
 
     // Getters and setters
     public int getId() {
         return id;
+    }
+
+    public Set<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
     }
 
     public String getDescription() {

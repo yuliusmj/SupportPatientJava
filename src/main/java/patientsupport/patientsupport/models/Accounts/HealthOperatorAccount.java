@@ -1,13 +1,15 @@
-package patientsupport.patientsupport.models.Accounts;
+package patientsupport.patientsupport.models.accounts;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import patientsupport.patientsupport.models.parameters.Audit;
+
 @Entity
 @Table(name = "HealthOperatorAccounts")
-public class HealthOperatorAccount {
+public class HealthOperatorAccount extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,19 +17,18 @@ public class HealthOperatorAccount {
 
     @NotEmpty(message = "This field is required")
     @Length(max = 100)
-    private String Description;
-
+    private String description;
 
     public int getId() {
         return id;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        this.Description = description;
+        this.description = description;
     }
 
     public void setId(int id) {

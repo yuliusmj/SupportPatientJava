@@ -3,9 +3,13 @@ package patientsupport.patientsupport.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
+
+import patientsupport.patientsupport.models.parameters.Audit;
+
 @Entity
 @Table(name = "Roles")
-public class Role {
+public class Role extends Audit<String> {
 
     //#region Attributes
     @Id
@@ -13,6 +17,7 @@ public class Role {
     private int id;
 
     @NotEmpty(message = "This field is required")
+    @Length(max = 30)
     private String description;
 
     private boolean active;
