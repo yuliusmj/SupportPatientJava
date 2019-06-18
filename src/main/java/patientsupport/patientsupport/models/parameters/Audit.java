@@ -11,6 +11,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
 public class Audit<U> {
@@ -19,6 +20,7 @@ public class Audit<U> {
     protected U createdBy;
 
     @CreatedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TIMESTAMP)
     protected Date createdAt;
 
@@ -26,6 +28,7 @@ public class Audit<U> {
     protected U lastModifiedBy;
 
     @LastModifiedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TIMESTAMP)
     protected Date lastModifiedAt;
 
@@ -33,6 +36,7 @@ public class Audit<U> {
     protected U deleteBy;
 
     @LastModifiedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TIMESTAMP)
     protected Date deleteAt;
 
@@ -83,6 +87,5 @@ public class Audit<U> {
     public void setCreatedBy(U createdBy) {
         this.createdBy = createdBy;
     }
-
 
 }

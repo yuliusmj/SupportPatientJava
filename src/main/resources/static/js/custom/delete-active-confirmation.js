@@ -50,7 +50,7 @@ $(document).ready(function() {
     var textButton = "Activar";
     var textclassName = "btn-success";
 
-    $('.tablecontainer').on('click', 'a.swalActive', function(e) {
+    $('.tablecontainer').on('click', 'button.swalActive', function(e) {
         var parameterModel = $(this).data('id');
         var urlAjaxSwalActive = $(this).data('url');
         var active = $(this).data('active');
@@ -86,7 +86,7 @@ $(document).ready(function() {
                     url: urlAjaxSwalActive + parameterModel,
                     data: { '_token': $('input[name=_token]').val(), },
                     success: function(data) {
-                        if (data.status) {
+                        if (data.Status == 200) {
                             swal("Ok", data.Message, "success");
                             setInterval('location.reload()', 1000);
                         } else {

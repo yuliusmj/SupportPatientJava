@@ -5,11 +5,6 @@
     color: #ffffff;
 }
 
-/* .sidebar .nav li>a,
-.off-canvas-sidebar .nav li>a {
-    margin: 0;
-} */
-
 .sidebar .sidebar-wrapper>.nav [data-toggle=collapse]~div>ul>li>a .sidebar-mini-icon {
     width: 34px;
     margin-right: 10px;
@@ -21,4 +16,24 @@
     z-index: 1;
     display: inherit;
     color: hsla(0, 0%, 100%, .5);
+}
+
+/*--------------- DataTables -----------------*/
+.toolbar,
+.dt-buttons {
+    float: left;
+}
+
+.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-page-length {
+    border-radius: 20px;
+    background-color: #51bcda;
+}
+
+.dt-button.dropdown-item.button-page-length.active {
+    color: #ffffff;
+}
+
+div.dataTables_filter input {
+    border-color: #51bcda;
+    border-radius: 7px;
 }

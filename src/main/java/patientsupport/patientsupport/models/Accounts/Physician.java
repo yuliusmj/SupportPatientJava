@@ -16,15 +16,15 @@ public class Physician extends Audit<String> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @NotEmpty(message = "This field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 50)
     private String firstName;
 
-    @NotEmpty(message = "This field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 50)
     private String lastName;
 
-    @NotEmpty(message = "This field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 50)
     private String phone;
 

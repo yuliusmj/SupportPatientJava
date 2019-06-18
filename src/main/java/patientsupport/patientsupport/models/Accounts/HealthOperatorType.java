@@ -16,7 +16,7 @@ public class HealthOperatorType extends Audit<String> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "This field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 100)
     private String description;
 
@@ -39,7 +39,7 @@ public class HealthOperatorType extends Audit<String> {
         this.healthOperatorAccounts = healthOperatorAccounts;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 

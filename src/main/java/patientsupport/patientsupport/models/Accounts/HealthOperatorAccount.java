@@ -15,7 +15,7 @@ public class HealthOperatorAccount extends Audit<String> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "This field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 100)
     private String description;
 

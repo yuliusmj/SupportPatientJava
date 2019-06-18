@@ -36,13 +36,16 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title d-inline"> <span th:text="#{label.edit}"></span> <span th:text="${country.description}"></span></h4>
+                                    <h4 class="card-title d-inline"> <span th:text="#{label.edit}"></span>  <span th:text="${country.description}"></span></h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="alert alert-danger" role="alert" th:if="${error != null}">
                                         <span th:text="${error}">Error</span>
                                     </div>
                                     <form action="#" th:action="@{/countries/update/{id}(id=${country.id})}" th:object="${country}" th:method="put">
+                                        <input th:field="*{id}" type="hidden" class="form-control" id="id">
+                                        <input th:field="*{createdBy}" type="hidden" class="form-control" id="createdBy">
+                                        <input th:field="*{createdAt}" th:value="*{createdAt}" type="hidden" class="form-control" id="createdAt">
                                         <div class="form-group col-md-8">
                                             <label for="description" class="col-form-label"><span th:text="#{label.description}"></span></label>
                                             <input th:field="*{description}" type="text" class="form-control"

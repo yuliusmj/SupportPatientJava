@@ -1,12 +1,23 @@
 package patientsupport.patientsupport.models.events;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import patientsupport.patientsupport.models.parameters.Audit;
 
@@ -18,30 +29,67 @@ public class Event extends Audit<String> {
     @GeneratedValue
     private int id;
 
-    @NotEmpty
+    @NotEmpty(message = "{label.required}")
     @Length(max = 100)
     private String subject;
 
-    @NotEmpty
-    private int asssignedTo;
-
-    @NotEmpty
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
 
-    @NotEmpty
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
+    
+    private Boolean isFullDay;
 
-    @NotEmpty
-    private Time startTime;
-
-    @NotEmpty
-    private Time endTime;
+    private String color;
 
     @Length(max = 255)
     private String observations;
 
+    private int eventTypeId;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "eventTypeId", referencedColumnName = "id", insertable = false, updatable = false)
+    @Where(clause = "identificador='eventType'")
+    @JsonIgnore
+    private EventType eventType;
+
     public int getId() {
         return id;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Boolean getIsFullDay() {
+        return isFullDay;
+    }
+
+    public void setIsFullDay(Boolean isFullDay) {
+        this.isFullDay = isFullDay;
+    }
+
+    public EventType getEventType() {
+        return eventType;
+    }
+
+    public void setEvent(EventType eventType) {
+        this.eventType = eventType;
+    }
+
+    public int getEventTypeId() {
+        return eventTypeId;
+    }
+
+    public void setEventTypeId(int eventTypeId) {
+        this.eventTypeId = eventTypeId;
     }
 
     public String getObservations() {
@@ -50,22 +98,6 @@ public class Event extends Audit<String> {
 
     public void setObservations(String observations) {
         this.observations = observations;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
-    }
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
     }
 
     public Date getEndDate() {
@@ -84,14 +116,6 @@ public class Event extends Audit<String> {
         this.startDate = startDate;
     }
 
-    public int getAsssignedTo() {
-        return asssignedTo;
-    }
-
-    public void setAsssignedTo(int asssignedTo) {
-        this.asssignedTo = asssignedTo;
-    }
-
     public String getSubject() {
         return subject;
     }
@@ -104,7 +128,4 @@ public class Event extends Audit<String> {
         this.id = id;
     }
 
-    
-
-    
 }

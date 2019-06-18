@@ -5,6 +5,8 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -16,13 +18,13 @@ public class Country extends Audit<String> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    
-    @NotEmpty(message = "This field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 100)
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinColumn(name = "CountryId")
+    @JsonIgnore
     private Set<Zone> zones;
 
     // Getters and Setters

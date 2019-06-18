@@ -16,7 +16,7 @@ public class SpecialistType extends Audit<String> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "This field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 50)
     private String description;
 

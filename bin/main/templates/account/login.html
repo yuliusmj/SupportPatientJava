@@ -36,7 +36,7 @@
                                             <i class="fa fa-user" style="color: hsla(0,0%,100%,.8);"></i>
                                         </span>
                                     </div>
-                                    <input type="email" id="email" name="email" class="form-control" th:placeholder="#{label.email}" />
+                                    <input type="email" id="email" name="email" class="form-control" required th:placeholder="#{label.email}" />
                                 </div>
                                 <div class="input-group no-border input-lg">
                                     <div class="input-group-prepend">
@@ -44,7 +44,7 @@
                                             <i class="fa fa-user-secret" style="color: hsla(0,0%,100%,.8);"></i>
                                         </span>
                                     </div>
-                                    <input type="password" id="password" name="password" class="form-control" th:placeholder="#{label.password}" />
+                                    <input type="password" id="password" name="password" class="form-control" required th:placeholder="#{label.password}" />
                                 </div>
                             </div>
                             <div class="card-footer text-center">
@@ -53,13 +53,15 @@
                                 </button>
                                 <div class="pull-left">
                                     <h6>
-                                        <a href="#pablo" class="link text-white">Forgot Your Password?</a>
+                                        <a href="#pablo" class="link text-white">
+                                            <span th:text="#{label.forgotpassword}"></span>
+                                        </a>
                                     </h6>
                                 </div>
                                 <div class="pull-right">
-                                    <h6>
+                                    <!-- <h6>
                                         <a href="#pablo" class="link text-white">Need Help?</a>
-                                    </h6>
+                                    </h6> -->
                                 </div>
                             </div>
                         </form>

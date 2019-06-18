@@ -3,19 +3,22 @@ package patientsupport.patientsupport.models.events;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.validator.constraints.Length;
 
 import patientsupport.patientsupport.models.parameters.Audit;
 
 @Entity
-@Table(name = "EventTypes")
+@Table(name = "EventTypes",uniqueConstraints = @UniqueConstraint(columnNames = {"description"}))
 public class EventType extends Audit<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @NotEmpty(message = "This field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 50)
     private String description;
     
@@ -23,9 +26,10 @@ public class EventType extends Audit<String> {
 
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinColumn(name = "EventTypeId")
+    @JsonIgnore
     private Set<Event> events;
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 

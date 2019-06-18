@@ -1,12 +1,19 @@
 package patientsupport.patientsupport.models.parameters;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
 
-import javax.persistence.*;
 import org.hibernate.validator.constraints.Length;
-import patientsupport.patientsupport.models.accounts.Patient;
 
 @Entity
-@Table(name = "DocumentTypes")
+@Table(name = "DocumentTypes", uniqueConstraints = 
+    @UniqueConstraint(columnNames = {"description", "alias"})
+)
 public class DocumentType extends Audit<String> {
 
     @Id
@@ -14,9 +21,11 @@ public class DocumentType extends Audit<String> {
     private int id;
 
     @Length(max = 50)
+    @NotEmpty(message = "{label.required}")
     private String description; 
 
     @Length(max = 20)
+    @NotEmpty(message = "{label.required}")
     private String alias;
 
     // @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
@@ -53,7 +62,5 @@ public class DocumentType extends Audit<String> {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    
+    }    
 }

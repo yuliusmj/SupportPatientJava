@@ -8,13 +8,13 @@
 <body>
     <div class="sidebar" data-color="white" data-active-color="info" th:fragment="sidebar">
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+            <a href="#" class="simple-text logo-mini">
                 <div class="logo-image-small">
                     <img th:src="@{/img/logo-small.png}">
                 </div>
             </a>
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Creative Tim
+            <a href="#" class="simple-text logo-normal" id ="nombreUsuario">
+               Patient Support
                 <!-- <div class="logo-image-big">
                       <img src="../assets/img/logo-big.png">
                     </div> -->
@@ -23,15 +23,15 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="active ">
-                    <a href="./dashboard.html">
+                    <a th:href="@{/home}">
                         <i class="nc-icon nc-bank"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/roles}">
-                        <i class="nc-icon nc-diamond"></i>
-                        <p>Roles</p>
+                    <a th:href="@{/events}">
+                        <i class="nc-icon nc-air-baloon"></i>
+                        <span class="sidebar-normal"> Events</span>
                     </a>
                 </li>
                 <li>
@@ -51,6 +51,36 @@
                                 <a th:href="@{/departments}">
                                     <span class="sidebar-mini-icon">D-C</span>
                                     <span class="sidebar-normal"> Depart - Cities </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/documenttypes}">
+                                    <span class="sidebar-mini-icon">DT</span>
+                                    <span class="sidebar-normal"> Document Types </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/eventtypes}">
+                                    <span class="sidebar-mini-icon">ET</span>
+                                    <span class="sidebar-normal"> Event Types </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/healthoperatortypes}">
+                                    <span class="sidebar-mini-icon">HOT</span>
+                                    <span class="sidebar-normal"> Health Operator Types </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/roles}">
+                                    <span class="sidebar-mini-icon">R</span>
+                                    <p>Roles</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/specialisttypes}">
+                                    <span class="sidebar-mini-icon">ST</span>
+                                    <span class="sidebar-normal"> Specialist Types </span>
                                 </a>
                             </li>
                             

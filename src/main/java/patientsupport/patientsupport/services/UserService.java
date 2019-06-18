@@ -1,6 +1,11 @@
 package patientsupport.patientsupport.services;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +13,6 @@ import patientsupport.patientsupport.models.Role;
 import patientsupport.patientsupport.models.User;
 import patientsupport.patientsupport.repository.RoleRepository;
 import patientsupport.patientsupport.repository.UserRepository;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 @Service
 public class UserService {
@@ -58,6 +60,11 @@ public class UserService {
             return roleRepository.findByDescription(role);
         }
 
+    }
+
+    public User getAuthUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return findUserByEmail(auth.getName());
     }
     
 }
