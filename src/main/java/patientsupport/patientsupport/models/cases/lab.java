@@ -46,7 +46,7 @@ public class lab {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "caseId", referencedColumnName = "id")
-    @Where(clause = "identificador ='case'")
+    @Where(clause = "identificador ='cases'")
     @JsonIgnore
     private Case cases;
 
