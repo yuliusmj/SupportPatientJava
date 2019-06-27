@@ -16,7 +16,7 @@ import patientsupport.patientsupport.services.UserService;
 @RequestMapping("approvals")
 public class ApprovalsController {
 
-    private String pathView = "aprovals";
+    private String pathView = "approvals";
     private ApprovalRepository _repository;
     private UserService userService;
 

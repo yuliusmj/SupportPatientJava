@@ -1,10 +1,15 @@
 package patientsupport.patientsupport.models.accounts;
 
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.validator.constraints.Length;
 
+import patientsupport.patientsupport.models.cases.Case;
 import patientsupport.patientsupport.models.parameters.Audit;
 
 
@@ -33,9 +38,10 @@ public class Physician extends Audit<String> {
 
     private boolean active;
 
-    public Physician (int id){
-        this.id = id;
-    }
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "physicianId")
+    @JsonIgnore
+    private Set<Case> cases;
 
 
     //#region getters and Setters

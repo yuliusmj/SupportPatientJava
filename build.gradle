@@ -10,15 +10,13 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-
 	mavenCentral()
 }
 
 configurations{
-
 	dev
-
 }
+
 // Administrative Extensions
 dependencies {
 
@@ -27,12 +25,19 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+	// https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
+	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
+
+
+	
+	// https://mvnrepository.com/artifact/com.github.raghubs81/jreport
+	compile group: 'com.github.raghubs81', name: 'jreport', version: '1.0'
+
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
-	// https://mvnrepository.com/artifact/com.github.raghubs81/jreport
-	compile group: 'com.github.raghubs81', name: 'jreport', version: '1.0'
+	
 	dev("org.springframework.boot:spring-boot-devtools")
 	
 }

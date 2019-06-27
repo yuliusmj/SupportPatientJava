@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
+import patientsupport.patientsupport.models.cases.Case;
+import patientsupport.patientsupport.models.parameters.Audit;
+
 
 
 /**
@@ -19,11 +22,11 @@ import org.hibernate.validator.constraints.Length;
  */
 @Entity
 @Table(name = "Approvals")
-public class Approval<Case> {
+public class Approval extends Audit<String> {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(message = "This field is required")
@@ -39,7 +42,7 @@ public class Approval<Case> {
     private int caseId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "caseId", referencedColumnName = "id")
+    @JoinColumn(name = "caseId", referencedColumnName = "id",insertable = false, updatable = false)
     @Where(clause = "identificador ='cases'")
     @JsonIgnore
     private Case cases;

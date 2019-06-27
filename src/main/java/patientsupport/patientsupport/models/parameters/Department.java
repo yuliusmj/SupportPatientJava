@@ -10,6 +10,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
+import patientsupport.patientsupport.models.accounts.Patient;
+import patientsupport.patientsupport.models.cases.Case;
+
 @Entity
 @Table(name = "Departments", indexes = {
     @Index(columnList = "description, zoneId", unique = true)
@@ -38,6 +41,16 @@ public class Department extends Audit<String> {
     @JsonIgnore
     private Set<City> cities;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "DepartmentId")
+    @JsonIgnore
+    private Set<Patient> patients;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinColumn(name = "treatmentDepartmentId")
+    @JsonIgnore
+    private Set<Case> cases;
+
     public String getDescription() {
         return description;
     }
@@ -50,6 +63,14 @@ public class Department extends Audit<String> {
         this.zone = zone;
     }
 
+    public Set<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(Set<Patient> patients) {
+        this.patients = patients;
+    }
+    
     public int getZoneId() {
         return zoneId;
     }

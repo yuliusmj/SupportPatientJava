@@ -24,8 +24,12 @@
     float: left;
 }
 
-.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-page-length {
-    border-radius: 20px;
+.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-page-length,
+.buttons-excel,
+.buttons-print,
+.buttons-html5{
+    margin: 5px !important;
+    border-radius: 20px !important;
     background-color: #51bcda;
 }
 

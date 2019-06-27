@@ -14,6 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
 
 @Configuration
@@ -59,8 +62,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/home").authenticated()
         .antMatchers("/countries/**").hasAuthority("ADMIN")
         .antMatchers("/zones/**").hasAuthority("ADMIN")
+        .antMatchers("/cities/**").hasAuthority("ADMIN")
+        .antMatchers("/documenttypes/**").hasAuthority("ADMIN")
+        .antMatchers("/eventypes/**").hasAuthority("ADMIN")
+        .antMatchers("/healthoperatortypes/**").hasAuthority("ADMIN")
+        .antMatchers("/insurancetypes/**").hasAuthority("ADMIN")
+        .antMatchers("/labtypes/**").hasAuthority("ADMIN")
+        .antMatchers("/stages/**").hasAuthority("ADMIN")
+        .antMatchers("/status/**").hasAuthority("ADMIN")
+        .antMatchers("/statusreasons/**").hasAuthority("ADMIN")
+        .antMatchers("/therapies/**").hasAuthority("ADMIN")
         .antMatchers("/departments/**").hasAuthority("ADMIN")
-        .antMatchers("/roles/**").hasAuthority("ENFERMERO")
+        .antMatchers("/roles/**").hasAuthority("ADMIN")
         .and()
         .csrf().disable()
         .formLogin().loginPage("/login").failureUrl("/login?error")
@@ -80,4 +93,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new CustomAccessDeniedHandler();
     }
     
+    @Bean
+    public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver, SpringSecurityDialect sec) {
+        final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+        templateEngine.addDialect(sec); // Enable use of "sec"
+        return templateEngine;
+    }
 }

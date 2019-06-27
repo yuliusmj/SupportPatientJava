@@ -10,76 +10,56 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
+import patientsupport.patientsupport.models.parameters.Audit;
 import patientsupport.patientsupport.models.parameters.LabType;
-import patientsupport.patientsupport.models.cases.Case;
+
 
 /**
  * lab
  */
 @Entity
 @Table(name = "Labs")
-public class lab {
+public class Lab extends Audit<String>{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "This Field is required")
+    @NotEmpty(message = "{label.required}")
     @Length(max = 50)
     private String laboratoryName;
 
-    @NotEmpty
     private Date requestDate;
 
     private Date resultDate;
 
     private int labTypeId;
 
-    private int caseId;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "labTypeId", referencedColumnName = "id")
+    @JoinColumn(name = "labTypeId", referencedColumnName = "id",insertable =
+    false, updatable = false)
     @Where(clause = "identificador ='labType'")
     @JsonIgnore
-    private LabType labTypes;
-
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "caseId", referencedColumnName = "id")
-    @Where(clause = "identificador ='cases'")
-    @JsonIgnore
-    private Case cases;
+    private LabType labType;
 
     public int getId() {
         return id;
     }
 
-    public Case getCases() {
-        return cases;
-    }
-
-    public void setCases(Case cases) {
-        this.cases = cases;
-    }
-
-    public int getCaseId() {
-        return caseId;
-    }
-
-    public void setCaseId(int caseId) {
-        this.caseId = caseId;
+    public LabType getLabType() {
+        return labType;
     }
 
     public void setLabType(LabType labType) {
-        this.labTypes = labType;
+        this.labType = labType;
     }
 
-    public int getLabType() {
+    public int getLabTypeId() {
         return labTypeId;
     }
 
-    public void setLabType(int labType) {
-        this.labTypeId = labType;
+    public void setLabTypeId(int labTypeId) {
+        this.labTypeId = labTypeId;
     }
 
     public Date getResultDate() {
@@ -110,8 +90,4 @@ public class lab {
         this.id = id;
     }
 
-    
-    
-
-    
 }

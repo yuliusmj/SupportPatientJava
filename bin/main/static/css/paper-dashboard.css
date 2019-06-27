@@ -2970,11 +2970,15 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar .navbar-nav .nav-link i.fa+p,
+.navbar .navbar-nav .nav-link i.far+p,
+.navbar .navbar-nav .nav-link i.fas+p,
 .navbar .navbar-nav .nav-link i.nc-icon+p {
   margin-left: 3px;
 }
 
 .navbar .navbar-nav .nav-link i.fa,
+.navbar .navbar-nav .nav-link i.far,
+.navbar .navbar-nav .nav-link i.fas,
 .navbar .navbar-nav .nav-link i.nc-icon {
   font-size: 18px;
   position: relative;
@@ -6203,6 +6207,8 @@ License - nucleoapp.com/license/
     margin-top: 65px;
   }
   .navbar-nav .nav-link i.fa,
+  .navbar-nav .nav-link i.far,
+  .navbar-nav .nav-link i.fas,
   .navbar-nav .nav-link i.nc-icon {
     opacity: .5;
   }

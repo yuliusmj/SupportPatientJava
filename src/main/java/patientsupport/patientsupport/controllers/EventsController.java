@@ -87,7 +87,7 @@ public class EventsController {
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody String store(@RequestBody Event itemToCreate, HttpServletRequest request) {
+    public @ResponseBody String store(@RequestBody @Valid Event itemToCreate, HttpServletRequest request) {
 
         String message = "";
         try {
@@ -100,9 +100,8 @@ public class EventsController {
             if(ex.getClass().getSimpleName().equals("DataIntegrityViolationException")) {
                 message = "{\"Status\":\"400\",\"Error\":"+Translator.toLocale("label.dataIntegrityViolationException") + "}";
             } else {
-                message = ex.getMessage();
+                message = "{\"Status\":\"400\",\"Error\":\""+ex.getMessage()+"\"}";
             }
-            message = "{\"Status\":\"400\",\"Error\":\"Error al eliminar el registro\"}";
         }
 
         return message;

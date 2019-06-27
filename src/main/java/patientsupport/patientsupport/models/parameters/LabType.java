@@ -9,17 +9,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.validator.constraints.Length;
 
-import  patientsupport.patientsupport.models.cases.lab;
+import  patientsupport.patientsupport.models.cases.Lab;
 
 /**
  * LabType
  */
 @Entity
 @Table(name = "LabTypes", uniqueConstraints = @UniqueConstraint(columnNames = { "description" }))
-public class LabType {
 
+public class LabType extends Audit<String> {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(message = "This field is required")
@@ -29,16 +29,23 @@ public class LabType {
     private boolean active;
 
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-    @JoinColumn(name = "LabId")
+    @JoinColumn(name = "labTypeId")
     @JsonIgnore
-    private Set<lab> labs;
-
+    private Set<Lab> labs;
 
     public int getId() {
         return id;
     }
 
-    public boolean isActive() {
+    public Set<Lab> getLabs() {
+        return labs;
+    }
+
+    public void setLabs(Set<Lab> labs) {
+        this.labs = labs;
+    }
+
+    public boolean getActive() {
         return active;
     }
 

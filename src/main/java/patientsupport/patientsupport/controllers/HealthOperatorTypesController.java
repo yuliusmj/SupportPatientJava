@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import patientsupport.patientsupport.helpers.Translator;
-import patientsupport.patientsupport.models.accounts.HealthOperatorType;
+import patientsupport.patientsupport.models.parameters.HealthOperatorType;
 import patientsupport.patientsupport.repository.HealthOperatorTypeRepository;
 import patientsupport.patientsupport.services.UserService;
 
