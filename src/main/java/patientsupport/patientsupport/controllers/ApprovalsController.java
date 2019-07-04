@@ -38,7 +38,6 @@ public class ApprovalsController {
         view.setViewName(pathView + "/index");
         return view;
 
-
     }
     
 }
